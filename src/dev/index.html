@@ -1,24 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRNDK - Dev Shell (Phase 1)</title>
+  <title>TRNDK | ترندك - الشريك الاستشاري والتقني</title>
+  <meta name="description" content="ترندك - منظومتك التقنية والإبداعية المتكاملة لبناء الهوية الرقمية، تطوير المواقع والمتاجر، وتسريع نمو الأعمال." />
+
+  <!-- Google Fonts: Cairo (Arabic) & Inter (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Early FOUC Prevention Script -->
+  <script>
+    (function () {
+      var savedLang = localStorage.getItem('trndk_lang') || 'ar';
+      document.documentElement.setAttribute('lang', savedLang);
+      document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+    })();
+  </script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6">
-  <div class="max-w-md w-full bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl text-center">
-    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-500/10 text-red-500 mb-4 font-bold text-xl">
-      T
+<body class="bg-[#121316] text-white min-h-screen selection:bg-primary selection:text-white antialiased font-cairo overflow-x-hidden">
+
+  <!-- ========================================================================= -->
+  <!-- Global Navigation Bar                                                     -->
+  <!-- ========================================================================= -->
+  <header class="fixed top-0 left-0 right-0 z-50">
+    <nav id="mainNavbar" class="navbar-default transition-all duration-300" aria-label="Main Navigation">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-lg py-1">
+          <img src="images/logo.png" alt="TRNDK Logo" class="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center gap-8 xl:gap-9">
+          <a href="#home" class="nav-anchor text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 focus:outline-none focus:text-primary">
+            <span data-i18n="nav.home">الرئيسية</span>
+          </a>
+          <a href="#about" class="nav-anchor text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 focus:outline-none focus:text-primary">
+            <span data-i18n="nav.about">من نحن</span>
+          </a>
+          <a href="#services" class="nav-anchor text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 focus:outline-none focus:text-primary">
+            <span data-i18n="nav.services">خدماتنا</span>
+          </a>
+          <a href="#portfolio" class="nav-anchor text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 focus:outline-none focus:text-primary">
+            <span data-i18n="nav.portfolio">أعمالنا</span>
+          </a>
+          <a href="#quote" class="nav-anchor text-sm font-medium text-slate-300 hover:text-white transition-colors py-1 focus:outline-none focus:text-primary">
+            <span data-i18n="nav.contact">تواصل معنا</span>
+          </a>
+        </div>
+
+        <!-- Right Side Actions: Language Toggle & Quote CTA -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          
+          <!-- Language Toggle Button -->
+          <button type="button" class="lang-toggle-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50" aria-label="Switch language to English">
+            <svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            <span class="lang-label font-mono font-bold tracking-wider">EN</span>
+          </button>
+
+          <!-- Desktop Primary CTA -->
+          <a href="#quote" class="nav-anchor hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-primary hover:bg-[#B8282C] text-white shadow-lg shadow-primary/20 transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50">
+            <span data-i18n="nav.quoteCta">اطلب عرض سعر</span>
+            <svg class="w-3.5 h-3.5 rtl:rotate-180 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button id="mobileMenuToggle" type="button" class="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" aria-expanded="false" aria-controls="mobileNavDrawer" aria-label="فتح القائمة الرئيسية" data-i18n-aria="nav.menuAria">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Accessible Mobile Navigation Drawer                                       -->
+  <!-- ========================================================================= -->
+  <div id="mobileNavBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" aria-hidden="true"></div>
+
+  <div id="mobileNavDrawer" class="fixed top-0 bottom-0 z-50 w-full max-w-xs sm:max-w-sm bg-[#1A1C20] border-s border-white/10 shadow-2xl p-6 flex flex-col justify-between transition-all duration-300 ease-in-out opacity-0 pointer-events-none translate-x-full invisible rtl:right-0 ltr:left-auto ltr:right-0" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    
+    <div>
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between pb-6 mb-6 border-b border-white/10">
+        <a href="#home" class="flex items-center gap-2">
+          <img src="images/logo.png" alt="TRNDK Logo" class="h-8 w-auto object-contain" />
+        </a>
+        <button id="mobileCloseBtn" type="button" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" aria-label="إغلاق القائمة الرئيسية" data-i18n-aria="nav.closeMenuAria">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Drawer Nav Links -->
+      <nav class="flex flex-col gap-2">
+        <a href="#home" class="nav-anchor flex items-center justify-between px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-white transition-colors font-medium">
+          <span data-i18n="nav.home">الرئيسية</span>
+          <svg class="w-4 h-4 text-slate-500 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <a href="#about" class="nav-anchor flex items-center justify-between px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-white transition-colors font-medium">
+          <span data-i18n="nav.about">من نحن</span>
+          <svg class="w-4 h-4 text-slate-500 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <a href="#services" class="nav-anchor flex items-center justify-between px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-white transition-colors font-medium">
+          <span data-i18n="nav.services">خدماتنا</span>
+          <svg class="w-4 h-4 text-slate-500 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <a href="#portfolio" class="nav-anchor flex items-center justify-between px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-white transition-colors font-medium">
+          <span data-i18n="nav.portfolio">أعمالنا</span>
+          <svg class="w-4 h-4 text-slate-500 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+        <a href="#quote" class="nav-anchor flex items-center justify-between px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-white transition-colors font-medium">
+          <span data-i18n="nav.contact">تواصل معنا</span>
+          <svg class="w-4 h-4 text-slate-500 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </nav>
     </div>
-    <h1 class="text-2xl font-bold text-white mb-2">TRNDK Website Redesign</h1>
-    <p class="text-sm font-semibold tracking-wide uppercase text-red-400 mb-4">Phase 1: Build Foundations</p>
-    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-      Isolated development shell verifying Vite, PostCSS, and Tailwind CSS v3.4 compilation. Legacy website files remain untouched.
-    </p>
-    <div class="inline-block bg-slate-900/60 border border-slate-700 rounded-lg px-4 py-2 text-xs font-mono text-emerald-400">
-      Status: Build Environment Active
+
+    <!-- Drawer Footer Actions -->
+    <div class="pt-6 border-t border-white/10 flex flex-col gap-4">
+      <a href="#quote" class="nav-anchor w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-primary hover:bg-[#B8282C] text-white shadow-lg shadow-primary/25 transition-colors">
+        <span data-i18n="nav.quoteCta">اطلب عرض سعر</span>
+        <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+      <p class="text-xs text-center text-slate-500 font-mono">TRNDK &copy; 2026</p>
     </div>
+
   </div>
+
+  <!-- ========================================================================= -->
+  <!-- Main Content Landmark                                                     -->
+  <!-- ========================================================================= -->
+  <main>
+
+    <!-- ======================================================================= -->
+    <!-- Hero Section                                                            -->
+    <!-- ======================================================================= -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-10 sm:pt-24 sm:pb-14 lg:pt-32 lg:pb-24 overflow-hidden">
+      
+      <!-- Subtle Ambient Lighting Elements -->
+      <div class="ambient-glow-red top-12 -left-20 rtl:-left-auto rtl:-right-20"></div>
+      <div class="ambient-glow-subtle bottom-10 right-10 rtl:right-auto rtl:left-10"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none opacity-40"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 lg:gap-14 items-center">
+          
+          <!-- Column 1: Value Proposition, Headlines & CTAs -->
+          <div class="lg:col-span-7 text-center lg:text-start">
+            
+            <!-- Category Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-slate-300 mb-3.5 sm:mb-5 lg:mb-6 backdrop-blur-sm shadow-inner">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span data-i18n="hero.badge">منظومتك التقنية والإبداعية المتكاملة</span>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold text-white leading-[1.2] lg:leading-[1.15] mb-3.5 sm:mb-5 lg:mb-6 tracking-tight">
+              <span data-i18n="hero.headline">من هوية مشروعك إلى نمو أعمالك</span>
+            </h1>
+
+            <!-- Supporting Description -->
+            <p class="text-sm sm:text-base lg:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-5 sm:mb-7 lg:mb-8 font-normal">
+              <span data-i18n="hero.description">نساعد العلامات التجارية على بناء هويتها الرقمية، وتطوير حضورها، وتحويل أفكارها إلى تجارب وحلول تدعم نمو أعمالها.</span>
+            </p>
+
+            <!-- Dual CTA Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-5 sm:mb-8 lg:mb-10">
+              
+              <!-- Primary CTA: Request a Quote -->
+              <a href="#quote" class="nav-anchor w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 min-h-[48px] rounded-full text-sm sm:text-base font-semibold bg-primary hover:bg-[#B8282C] text-white shadow-xl shadow-primary/30 transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/50">
+                <span data-i18n="hero.primaryCta">اطلب عرض سعر</span>
+                <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+
+              <!-- Secondary CTA: View Our Work -->
+              <a href="#portfolio" class="nav-anchor w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-8 sm:py-4 min-h-[48px] rounded-full text-sm sm:text-base font-medium text-white bg-white/5 hover:bg-white/10 border border-white/15 transition-all duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-white/30">
+                <span data-i18n="hero.secondaryCta">شاهد أعمالنا</span>
+              </a>
+
+            </div>
+
+            <!-- Three Core Pillars Tagline Strip -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5 text-xs text-slate-300">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1A1C20] border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+                <span data-i18n="hero.tagDesign">التصميم الإبداعي</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1A1C20] border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#5A9BD5] flex-shrink-0"></span>
+                <span data-i18n="hero.tagTech">تطوير المواقع والمتاجر</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1A1C20] border border-white/5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                <span data-i18n="hero.tagGrowth">حلول النمو والتسويق</span>
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Column 2: Conceptual Ecosystem Synergy Visual -->
+          <div class="lg:col-span-5 flex items-center justify-center">
+            <div class="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] lg:max-w-none aspect-square flex items-center justify-center">
+              
+              <!-- Background Ambient Ring Glow -->
+              <div class="absolute inset-8 rounded-full bg-gradient-to-tr from-primary/10 via-transparent to-[#5A9BD5]/10 filter blur-xl pointer-events-none"></div>
+
+              <!-- Interconnected SVG Disciplines Matrix -->
+              <svg class="w-full h-full max-w-[460px]" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TRNDK Integrated Disciplines: Design, Technology, Growth">
+                <defs>
+                  <!-- Gradients -->
+                  <linearGradient id="orbitGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#D93438" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#5A9BD5" stop-opacity="0.3" />
+                  </linearGradient>
+                  <linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1A1C20" />
+                    <stop offset="100%" stop-color="#121316" />
+                  </linearGradient>
+                  <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Orbital Track Circles -->
+                <circle cx="250" cy="250" r="185" stroke="rgba(255, 255, 255, 0.07)" stroke-width="1.5" stroke-dasharray="4 6" />
+                <circle cx="250" cy="250" r="135" stroke="url(#orbitGrad1)" stroke-width="1.5" class="svg-dash-flow" />
+
+                <!-- Connecting Arteries from Center to Nodes -->
+                <line x1="250" y1="250" x2="250" y2="85" stroke="rgba(217, 52, 56, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+                <line x1="250" y1="250" x2="105" y2="365" stroke="rgba(90, 155, 213, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+                <line x1="250" y1="250" x2="395" y2="365" stroke="rgba(52, 211, 153, 0.4)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+                <!-- Triangle Discipline Bridge -->
+                <polygon points="250,85 105,365 395,365" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+
+                <!-- Node 1: Design (Top) -->
+                <g class="animate-float-slow">
+                  <!-- Outer Pulse -->
+                  <circle cx="250" cy="85" r="42" fill="#1A1C20" stroke="rgba(217, 52, 56, 0.5)" stroke-width="1.5" />
+                  <circle cx="250" cy="85" r="34" fill="#121316" />
+                  <!-- Icon: Creative Palette / Pen Tool -->
+                  <path d="M245 77l10 10-5 5-10-10 5-5zm-2 2l-10 10v4h4l10-10-4-4zm15 15a4 4 0 11-4-4" stroke="#D93438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                  <!-- Label -->
+                  <rect x="200" y="135" width="100" height="24" rx="12" fill="#1A1C20" stroke="rgba(255, 255, 255, 0.1)" />
+                  <text x="250" y="151" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600" font-family="inherit">
+                    <tspan data-i18n="hero.visualDesign">التصميم</tspan>
+                  </text>
+                </g>
+
+                <!-- Node 2: Technology (Bottom Left) -->
+                <g class="animate-float-delay">
+                  <!-- Outer Pulse -->
+                  <circle cx="105" cy="365" r="42" fill="#1A1C20" stroke="rgba(90, 155, 213, 0.5)" stroke-width="1.5" />
+                  <circle cx="105" cy="365" r="34" fill="#121316" />
+                  <!-- Icon: Code / Terminal -->
+                  <path d="M98 360l-5 5 5 5m14-10l5 5-5 5m-5-12l-4 14" stroke="#5A9BD5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                  <!-- Label -->
+                  <rect x="55" y="415" width="100" height="24" rx="12" fill="#1A1C20" stroke="rgba(255, 255, 255, 0.1)" />
+                  <text x="105" y="431" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600" font-family="inherit">
+                    <tspan data-i18n="hero.visualTech">التقنية</tspan>
+                  </text>
+                </g>
+
+                <!-- Node 3: Growth (Bottom Right) -->
+                <g class="animate-float-slow">
+                  <!-- Outer Pulse -->
+                  <circle cx="395" cy="365" r="42" fill="#1A1C20" stroke="rgba(52, 211, 153, 0.5)" stroke-width="1.5" />
+                  <circle cx="395" cy="365" r="34" fill="#121316" />
+                  <!-- Icon: Growth Chart / Rocket -->
+                  <path d="M386 373l6-6 4 4 8-8m-4 0h4v4" stroke="#34D399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                  <!-- Label -->
+                  <rect x="345" y="415" width="100" height="24" rx="12" fill="#1A1C20" stroke="rgba(255, 255, 255, 0.1)" />
+                  <text x="395" y="431" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600" font-family="inherit">
+                    <tspan data-i18n="hero.visualGrowth">النمو</tspan>
+                  </text>
+                </g>
+
+                <!-- Center Central Hub: TRNDK Ecosystem Identity -->
+                <g>
+                  <!-- Outer Glowing Ring -->
+                  <circle cx="250" cy="250" r="62" fill="none" stroke="rgba(217, 52, 56, 0.3)" stroke-width="2" filter="url(#glowFilter)" />
+                  <circle cx="250" cy="250" r="56" fill="url(#hubGrad)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+                  
+                  <!-- Brand Emblem Accent -->
+                  <circle cx="250" cy="250" r="46" fill="#1A1C20" stroke="rgba(217, 52, 56, 0.8)" stroke-width="2" />
+                  
+                  <!-- TRNDK Center Typography -->
+                  <text x="250" y="247" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="800" letter-spacing="1">
+                    <tspan data-i18n="hero.visualCenter">ترندك</tspan>
+                  </text>
+                  <text x="250" y="262" text-anchor="middle" fill="#94A3B8" font-size="9" font-weight="500">
+                    <tspan data-i18n="hero.visualCenterSub">منظومة متكاملة</tspan>
+                  </text>
+                </g>
+              </svg>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ES Module Entry -->
   <script type="module" src="/src/js/main.js"></script>
 </body>
 </html>

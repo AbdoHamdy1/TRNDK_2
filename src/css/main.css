@@ -1,5 +1,132 @@
-/* TRNDK Custom Styles - Phase 1 Foundation */
+/* -------------------------------------------------------------------------- */
+/* TRNDK Redesign - Phase 2 Stylesheet                                        */
+/* -------------------------------------------------------------------------- */
+
 :root {
+  --color-bg-dark: #121316;
+  --color-card-dark: #1A1C20;
   --color-primary: #D93438;
-  --color-dark: #121316;
+  --color-primary-hover: #B8282C;
+}
+
+/* Base Body Styles & Typography */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background-color: var(--color-bg-dark);
+  color: #FFFFFF;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+[dir="rtl"] body {
+  font-family: 'Cairo', sans-serif;
+  letter-spacing: normal;
+}
+
+[dir="ltr"] body {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Glassmorphic Navbar Dynamic States */
+.navbar-default {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.navbar-scrolled {
+  background-color: rgba(18, 19, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+/* Ambient Radial Red Lighting for Hero */
+.ambient-glow-red {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(217, 52, 56, 0.18) 0%, rgba(217, 52, 56, 0.04) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-subtle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(90, 155, 213, 0.10) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Conceptual SVG Visual Animations */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes slowOrbitPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(217, 52, 56, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 35px 8px rgba(217, 52, 56, 0.15);
+  }
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animate-float-slow {
+  animation: subtleFloat 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: subtleFloat 7s ease-in-out 1.5s infinite;
+}
+
+.svg-dash-flow {
+  stroke-dasharray: 6 6;
+  animation: dashFlow 25s linear infinite;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-float-slow,
+  .animate-float-delay,
+  .svg-dash-flow {
+    animation: none !important;
+  }
 }
