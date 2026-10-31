@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<script>
+    (function () {
+        var savedLang = localStorage.getItem('trndk_language') || 'en';
+        document.documentElement.setAttribute('lang', savedLang);
+        document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+    })();
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="TRNDK - Professional Business Solutions, Creative Design, Web Design, and Digital Services">
+    <title>Home | TRNDK</title>
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D93438',
+                        secondary: '#5A9BD5',
+                        light: '#EAEAEA',
+                        dark: '#1a1a1a'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html:not(.lang-ready) body {
+            visibility: hidden;
+        }
+
+        html.lang-ready body {
+            visibility: visible;
+        }
+
+        [lang="en"] body,
+        [lang="en"] body * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        [lang="ar"] body,
+        [lang="ar"] body * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-slider .relative.z-10 h1 {
+            animation: heroFadeUp 1s ease-out 0.3s both;
+        }
+
+        .hero-slider .relative.z-10 p {
+            animation: heroFadeUp 1s ease-out 0.6s both;
+        }
+
+        .hero-slider .relative.z-10 a {
+            animation: heroFadeUp 1s ease-out 0.9s both;
+        }
+
+        /* Hero CTA soft float */
+        @keyframes softFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .hero-slider .relative.z-10 a:not(:hover) {
+            animation: heroFadeUp 1s ease-out 0.9s both, softFloat 4s ease-in-out 2s infinite;
+        }
+
+        .service-card .aspect-square img {
+            transition: transform 0.6s ease;
+        }
+
+        .service-card:hover .aspect-square img {
+            transform: scale(1.08);
+        }
+
+        .cta-section .group {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section .group::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: none;
+        }
+
+        .cta-section .group:hover::after {
+            animation: shineSwipe 0.6s ease forwards;
+        }
+
+        @keyframes shineSwipe {
+            to {
+                left: 120%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .service-card {
+            opacity: 0;
+            transition: all 0.6s ease-out;
+        }
+
+        .service-card.slide-from-right {
+            transform: translateX(100px);
+        }
+
+        .service-card.slide-from-left {
+            transform: translateX(-100px);
+        }
+
+        .service-card.animate-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .navbar .nav-link {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: #D93438;
+        }
+
+        .navbar #mobileMenuBtn {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled .nav-link {
+            color: #1a1a1a;
+        }
+
+        .navbar.scrolled .nav-link:hover {
+            color: #D93438;
+        }
+
+        .navbar.scrolled #mobileMenuBtn {
+            color: #1a1a1a;
+        }
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu .nav-link {
+            color: #1a1a1a !important;
+        }
+
+        .mobile-menu .nav-link:hover {
+            color: #D93438 !important;
+        }
+
+        .lang-btn {
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider .slider-images {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-slider .slider-images img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slider .slider-images img.active {
+            opacity: 1;
+        }
+
+        .hero-slider .slider-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(217, 52, 56, 0.65) 0%, rgba(26, 26, 26, 0.6) 50%, rgba(90, 155, 213, 0.55) 100%);
+            z-index: 1;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 10;
+        }
+
+        .slider-dots button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .slider-dots button.active {
+            background: white;
+            border-color: white;
+            transform: scale(1.2);
+        }
+
+        .slider-dots button:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(217, 52, 56, 0.2);
+        }
+
+        .view-services-btn {
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .view-services-btn {
+            background-color: #D93438;
+            color: white;
+            border-color: #D93438;
+        }
+
+        .service-card:hover .view-services-btn .btn-arrow {
+            transform: translateX(3px);
+        }
+
+        [dir="rtl"] .service-card:hover .view-services-btn .btn-arrow {
+            transform: translateX(-3px);
+        }
+
+        .ecosystem-circle {
+            animation: ecosystemRotate 60s linear infinite;
+        }
+
+        @keyframes ecosystemRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ecosystem-item {
+            animation: ecosystemCounterRotate 60s linear infinite;
+        }
+
+        @keyframes ecosystemCounterRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        .connection-line {
+            stroke-dasharray: 5, 5;
+            animation: ecosystemDash 20s linear infinite;
+        }
+
+        @keyframes ecosystemDash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        .ecosystem-hub-pulse {
+            animation: hubPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes hubPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(217, 52, 56, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 30px 10px rgba(217, 52, 56, 0.15);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ecosystem-circle {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ecosystem-circle {
+                transform: scale(0.85);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ecosystem-circle {
+                animation: none;
+            }
+
+            .ecosystem-item {
+                animation: none;
+            }
+        }
+
+        :root {
+            --brand-dark-bg: #1a1a1a;
+        }
+
+        .bottom-section-wrapper {
+            background-color: #1a1a1a !important;
+            background: #1a1a1a !important;
+        }
+
+        .cta-section,
+        .footer-seamless {
+            background-color: transparent !important;
+            background: transparent !important;
+        }
+
+        .header-logo {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 480px) {
+            .header-logo {
+                height: 30px;
+            }
+
+            .lang-btn {
+                min-height: 44px;
+                min-width: 80px;
+                padding: 0.5rem 1rem;
+            }
+
+            .hero-gradient {
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+
+            .service-card {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .footer-seamless .grid {
+                gap: 1.5rem;
+            }
+
+            .cta-section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .cta-section .absolute {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-logo {
+                height: 32px;
+            }
+
+            section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .cta-section a[href^="mailto"] {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 640px) and (max-width: 1024px) {
+            .header-logo {
+                height: 38px;
+            }
+
+            .service-card {
+                max-width: none;
+            }
+
+            .footer-seamless .grid {
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1280px) {
+            .header-logo {
+                height: 40px;
+            }
+        }
+
+        @media (min-width: 1536px) {
+
+            .max-w-7xl {
+                max-width: 1400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-logo {
+                height: 34px;
+            }
+
+            .footer-logo {
+                height: 36px;
+            }
+
+            .footer-seamless .grid {
+                text-align: center;
+            }
+
+            .mobile-menu {
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .blur-3xl {
+                filter: blur(40px);
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .service-card:hover {
+                transform: none !important;
+            }
+
+            .service-card:active {
+                transform: scale(0.98) !important;
+                transition: transform 0.1s ease;
+            }
+
+            .nav-link {
+                min-height: 48px;
+            }
+
+            .lang-btn {
+                min-height: 48px;
+            }
+        }
+
+        [dir="rtl"] .footer-seamless .grid {
+            direction: rtl;
+        }
+
+        @media (max-width: 768px) {
+            [dir="rtl"] .text-center {
+                text-align: center;
+            }
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 640px) {
+
+            p,
+            li {
+                line-height: 1.7;
+            }
+        }
+
+        .partners {
+            text-align: center;
+            padding: 60px 0;
+            background: #f5f5f5;
+        }
+
+        /* title */
+        .partners h2 {
+            color: #e63946;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        .partners h2::after {
+            content: "";
+            width: 80px;
+            height: 4px;
+            background: #e63946;
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 5px;
+        }
+
+        /* slider */
+        .slider {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* moving track */
+        .slide-track {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scroll 18s linear infinite;
+        }
+
+        /* logos */
+        .slide-track img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 50%;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ✅ يبدأ من خارج الشاشة */
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ✅ pause on hover (احترافي) */
+        .slider:hover .slide-track {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center">
+                <img src="images/logo.png" alt="TRNDK Logo" class="header-logo">
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#home" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="about.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="portfolio.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Business Gallery" data-ar="معرض الأعمال">Business Gallery</a>
+                <a href="blog.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Blog" data-ar="المدونة">Blog</a>
+                <a href="#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="langToggle"
+                    class="lang-btn bg-primary text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-opacity-90">
+                    EN | AR
+                </button>
+
+                <button id="mobileMenuBtn" class="lg:hidden text-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu"
+            class="mobile-menu lg:hidden hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4">
+            <div class="flex flex-col items-center gap-4">
+                <a href="#home" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="about.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="portfolio.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Business Gallery" data-ar="معرض الأعمال">Business Gallery</a>
+                <a href="blog.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Blog" data-ar="المدونة">Blog</a>
+                <a href="#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-slider min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="slider-images">
+            <img src="images/Artboard1.jpg" alt="Slide 1" class="active">
+            <img src="images/Artboard7.jpg" alt="Slide 2">
+            <img src="images/Artboard8.jpg" alt="Slide 3">
+        </div>
+        <div class="slider-overlay"></div>
+        <div class="max-w-4xl mx-auto text-center text-white relative z-10">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                data-en="Transform Your Business Into a Success Story" data-ar="حوّل أعمالك إلى قصة نجاح">
+                Transform Your Business Into a Success Story
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto"
+                data-en="We provide comprehensive digital solutions to help your business grow and thrive in the modern marketplace."
+                data-ar="نقدم حلولاً رقمية شاملة لمساعدة أعمالك على النمو والازدهار في السوق الحديث.">
+                We provide comprehensive digital solutions to help your business grow and thrive in the modern
+                marketplace.
+            </p>
+            <a href="#services"
+                class="inline-block bg-white text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-light transition-colors hover:shadow-lg"
+                data-en="Explore Our Services" data-ar="استكشف خدماتنا">
+                Explore Our Services
+            </a>
+        </div>
+        <div class="slider-dots">
+            <button class="active" aria-label="Slide 1"></button>
+            <button aria-label="Slide 2"></button>
+            <button aria-label="Slide 3"></button>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4" data-en="Our Services" data-ar="خدماتنا">Our
+                    Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto"
+                    data-en="Discover our comprehensive range of professional services designed to elevate your business."
+                    data-ar="اكتشف مجموعتنا الشاملة من الخدمات المهنية المصممة لرفع مستوى أعمالك.">
+                    Discover our comprehensive range of professional services designed to elevate your business.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-8">
+
+                <a href="creative-design.html"
+                    class="service-card slide-from-right bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="images/creative-design.jpg" alt="Creative Design"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2" data-en="Creative Design"
+                            data-ar="التصميم الإبداعي">Creative Design</h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            data-en="Unique and innovative designs that capture your brand's essence and leave lasting impressions."
+                            data-ar="تصاميم فريدة ومبتكرة تجسد هوية علامتك التجارية وتترك انطباعات دائمة.">
+                            Unique and innovative designs that capture your brand's essence and leave lasting
+                            impressions.
+                        </p>
+                        <span
+                            class="view-services-btn inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/30 px-4 py-2 rounded-full">
+                            <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                            <svg class="btn-arrow w-4 h-4 transition-transform rtl:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="website-design.html"
+                    class="service-card slide-from-left bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="images/web-design.jpg" alt="Web Design"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2" data-en="Web Design" data-ar="تصميم المواقع">Web
+                            Design</h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            data-en="Modern, responsive websites that provide seamless user experiences across all devices."
+                            data-ar="مواقع حديثة ومتجاوبة توفر تجارب مستخدم سلسة عبر جميع الأجهزة.">
+                            Modern, responsive websites that provide seamless user experiences across all devices.
+                        </p>
+                        <span
+                            class="view-services-btn inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/30 px-4 py-2 rounded-full">
+                            <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                            <svg class="btn-arrow w-4 h-4 transition-transform rtl:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="video-production.html"
+                    class="service-card slide-from-left bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="images/video-production.jpg" alt="Video Production"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2" data-en="Video Production" data-ar="إنتاج الفيديو">
+                            Video Production</h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            data-en="Professional video content that tells your story and engages your audience effectively."
+                            data-ar="محتوى فيديو احترافي يروي قصتك ويشرك جمهورك بفعالية عالية.">
+                            Professional video content that tells your story and engages your audience effectively.
+                        </p>
+                        <span
+                            class="view-services-btn inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/30 px-4 py-2 rounded-full">
+                            <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                            <svg class="btn-arrow w-4 h-4 transition-transform rtl:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="rapid-growth.html"
+                    class="service-card slide-from-left bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="images/growth-services.jpg" alt="Growth Services"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2" data-en="Growth Services" data-ar="خدمات النمو">
+                            Growth Services</h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            data-en="Strategic solutions to accelerate your business growth and maximize your market potential."
+                            data-ar="حلول استراتيجية لتسريع نمو أعمالك وتعظيم إمكاناتك السوقية بذكاء.">
+                            Strategic solutions to accelerate your business growth and maximize your market potential.
+                        </p>
+                        <span
+                            class="view-services-btn inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/30 px-4 py-2 rounded-full">
+                            <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                            <svg class="btn-arrow w-4 h-4 transition-transform rtl:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="business-solutions.html"
+                    class="service-card slide-from-right bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] block">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="images/business-solutions.jpg" alt="Business Solutions"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2" data-en="Business Solutions"
+                            data-ar="حلول الأعمال">Business Solutions</h3>
+                        <p class="text-gray-600 text-sm mb-4"
+                            data-en="End-to-end business solutions tailored to meet your unique operational requirements."
+                            data-ar="حلول أعمال متكاملة مصممة خصيصاً لتلبية متطلباتك التشغيلية الفريدة.">
+                            End-to-end business solutions tailored to meet your unique operational requirements.
+                        </p>
+                        <span
+                            class="view-services-btn inline-flex items-center gap-2 text-sm font-semibold text-primary border border-primary/30 px-4 py-2 rounded-full">
+                            <span data-en="View Services" data-ar="عرض الخدمات">View Services</span>
+                            <svg class="btn-arrow w-4 h-4 transition-transform rtl:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!--<section class="partners">
+        <h2>الشركاء</h2>
+
+        <<div class="slider">
+            <div class="slide-track">
+
+                <img src="images/Portoflio/Artboard 1.png">
+                <img src="images/Portoflio/Artboard 3.png">
+                <img src="images/Portoflio/Artboard 4.png">
+                <img src="images/Portoflio/Artboard 5.png">
+                <img src="images/Portoflio/Artboard 6.png">
+                <img src="images/Portoflio/Artboard 7.png">
+                <img src="images/Portoflio/Artboard 8.png">
+
+
+                <img src="images/Portoflio/Artboard 1.png">
+                <img src="images/Portoflio/Artboard 3.png">
+                <img src="images/Portoflio/Artboard 4.png">
+                <img src="images/Portoflio/Artboard 5.png">
+                <img src="images/Portoflio/Artboard 6.png">
+                <img src="images/Portoflio/Artboard 7.png">
+                <img src="images/Portoflio/Artboard 8.png">
+
+            </div>
+        </div>
+    </section>-->
+    <section class="py-20 px-6 bg-light overflow-hidden">
+        <div class="max-w-6xl mx-auto fade-in-section">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4"
+                    data-en="Our Ecosystem" data-ar="منظومتنا">Our Ecosystem</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6" data-en="Our Ecosystem" data-ar="منظومتنا">
+                    Our Ecosystem
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto"
+                    data-en="46 specialized services integrated around you — the client — at the center of everything we do."
+                    data-ar="46 خدمة متخصصة متكاملة حولك — العميل — في مركز كل ما نفعله.">
+                    46 specialized services integrated around you — the client — at the center of everything we do.
+                </p>
+            </div>
+
+            <div class="relative max-w-lg mx-auto aspect-square">
+                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400" fill="none">
+                    <circle cx="200" cy="200" r="170" stroke="rgba(217,52,56,0.12)" stroke-width="1.5"
+                        class="connection-line" />
+                    <circle cx="200" cy="200" r="130" stroke="rgba(90,155,213,0.12)" stroke-width="1.5"
+                        class="connection-line" />
+                    <circle cx="200" cy="200" r="90" stroke="rgba(217,52,56,0.08)" stroke-width="1" />
+                </svg>
+
+                <div class="ecosystem-circle absolute inset-0">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div class="ecosystem-item bg-primary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Creative Design" data-ar="التصميم الإبداعي">Creative Design</div>
+                    </div>
+                    <div class="absolute top-[15%] right-[5%]">
+                        <div class="ecosystem-item bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Web Development" data-ar="تطوير الويب">Web Development</div>
+                    </div>
+                    <div class="absolute top-[40%] right-[-5%]">
+                        <div class="ecosystem-item bg-primary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Digital Marketing" data-ar="التسويق الرقمي">Digital Marketing</div>
+                    </div>
+                    <div class="absolute bottom-[30%] right-[0%]">
+                        <div class="ecosystem-item bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Video Production" data-ar="إنتاج الفيديو">Video Production</div>
+                    </div>
+                    <div class="absolute bottom-[5%] right-[20%]">
+                        <div class="ecosystem-item bg-primary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Business Intelligence" data-ar="ذكاء الأعمال">Business Intelligence</div>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+                        <div class="ecosystem-item bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Growth Services" data-ar="خدمات النمو">Growth Services</div>
+                    </div>
+                    <div class="absolute bottom-[5%] left-[20%]">
+                        <div class="ecosystem-item bg-primary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="E-Commerce" data-ar="التجارة الإلكترونية">E-Commerce</div>
+                    </div>
+                    <div class="absolute bottom-[30%] left-[0%]">
+                        <div class="ecosystem-item bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Brand Strategy" data-ar="استراتيجية العلامة">Brand Strategy</div>
+                    </div>
+                    <div class="absolute top-[40%] left-[-5%]">
+                        <div class="ecosystem-item bg-primary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Consulting" data-ar="الاستشارات">Consulting</div>
+                    </div>
+                    <div class="absolute top-[15%] left-[5%]">
+                        <div class="ecosystem-item bg-secondary text-white text-xs font-semibold px-3 py-2 rounded-full whitespace-nowrap shadow-lg"
+                            data-en="Analytics" data-ar="التحليلات">Analytics</div>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div
+                        class="ecosystem-hub-pulse bg-white rounded-full w-32 h-32 shadow-2xl flex flex-col items-center justify-center border-4 border-primary">
+                        <span class="text-4xl font-bold text-primary">46</span>
+                        <span class="text-xs text-gray-600 font-medium" data-en="Services"
+                            data-ar="خدمة">Services</span>
+                    </div>
+                </div>
+
+                <div class="absolute inset-8 border-2 border-primary/20 rounded-full"></div>
+                <div class="absolute inset-16 border-2 border-secondary/20 rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-section-wrapper" style="background-color: #1a1a1a;">
+
+        <section id="contact" class="cta-section py-20 px-6 relative overflow-hidden">
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="mb-8">
+                    <span
+                        class="inline-block px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-semibold mb-6"
+                        data-en="Let's Connect" data-ar="لنتواصل">Let's Connect</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+                        data-en="Have a question or a project in mind?" data-ar="لديك استفسار أو مشروع؟">
+                        Have a question or a project in mind?
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10"
+                        data-en="Get in touch with us and let's transform your vision into reality."
+                        data-ar="تواصل معنا الآن ودعنا نحول رؤيتك إلى واقع.">
+                        Get in touch with us and let's transform your vision into reality.
+                    </p>
+                </div>
+
+                <a href="mailto:trendaak@gmail.com?subject=Inquiry from TRNDK Website"
+                    class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1">
+                    <span data-en="Contact Us" data-ar="تواصل معنا">Contact Us</span>
+                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+
+                <p class="mt-8 text-gray-500 text-sm" data-en="We typically respond within 24 hours"
+                    data-ar="نرد عادةً خلال 24 ساعة">
+                    We typically respond within 24 hours
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer-seamless text-white py-4 px-6 relative overflow-hidden">
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div class="text-center md:text-start flex flex-col items-center md:items-start">
+                        <a href="index.html" class="inline-block mb-2">
+                            <img src="images/logo.png" alt="TRNDK Logo" class="footer-logo">
+                        </a>
+                        <p class="text-gray-400 text-sm" data-en="Your partner in digital success"
+                            data-ar="شريكك في النجاح الرقمي">Your partner in digital success</p>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://www.facebook.com/trndk.co/" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://x.com/trndk_co" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="X (Twitter)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/trndk.co/" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@trndk.co?lang=ar" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="TikTok">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@trndk_CO" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="YouTube">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.snapchat.com/@trndk.co" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Snapchat">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <!-- الصق محتوى ملف snapchat.svg هنا -->
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z" />
+                            </svg>
+                        </a>
+                        <a href="https://t.me/TrndkSupport" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-secondary transition-colors" aria-label="Telegram Support">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="text-center md:text-end">
+                        <p class="text-xl text-gray-400" data-en="© 2026 TRNDK. All rights reserved."
+                            data-ar="© 2026 ترندك. جميع الحقوق محفوظة.">
+                            © 2026 TRNDK. All rights reserved.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.hero-slider .slider-images img');
+            const dots = document.querySelectorAll('.slider-dots button');
+            const heroSection = document.querySelector('.hero-slider');
+            let currentSlide = 0;
+            let autoSlideInterval;
+
+            function goToSlide(index) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                currentSlide = index;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoSlide() {
+                clearInterval(autoSlideInterval);
+            }
+
+            dots.forEach(function (dot, index) {
+                dot.addEventListener('click', function () {
+                    stopAutoSlide();
+                    goToSlide(index);
+                    startAutoSlide();
+                });
+            });
+
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', stopAutoSlide);
+                heroSection.addEventListener('mouseleave', startAutoSlide);
+            }
+
+            setTimeout(function () {
+                nextSlide();
+                startAutoSlide();
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>

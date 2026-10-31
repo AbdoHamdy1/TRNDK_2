@@ -1,0 +1,82 @@
+"controls_style": "background-color:rgba(255, 255, 255, 0.85);top: 20px; bottom: auto; left: auto; right: 50px; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 6px; padding-bottom: 6px; ",      
+            "sound_flip": 1        },
+        "layers": [{"id":"0","type":"action","page":30,"page_end":null,"origin":"pdf","css":{"width":105.072,"height":12,"left":157.644,"top":804.131015},"wrapper":{"width":595.276001,"height":841.890015,"left":0,"top":0},"action":{"highlight":0,"target":"mailto:support@trndk.com","type":"link","subtype":"detected","id_media":null,"extra":{"new_tab":"1","text":null}},"media":{"id_media":null,"url":null,"type":null,"options":{"display":"inline"}}}],
+        "lead": null,
+        "bookmark": {"list":[]}    };
+    /*end-metadata*/
+
+    CDN_PATH = 'https://cdnc.heyzine.com';
+    THUMBNAIL_PATH = 'https://cdnc.heyzine.com/files/uploaded/';
+    TOC_PATH = 'https://cdnc.heyzine.com/files/toc/';
+    ICONSET_VER = '6';
+
+
+</script>
+
+
+</head>
+<body style="width: 100vw; height: 100vh">
+
+
+
+
+<div id="loaderLine" class="loader-line" style="display: none;"></div>
+
+<div class="logo-backs"></div>
+
+    <img src="" class="logo-backs2 logo-backs2-loading" style="display: none;" alt="PDF to Flipbook" width="5px" />
+
+<div class="flipbook-title" style="display: none;">
+    <h1></h1>
+    <h2></h2>
+    <p></p>
+</div>
+
+
+<div id="modalFull" style="display: none;">
+    <div class="hz-icon hz-icn-fullscreen-on" style="background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></div>
+</div>
+
+<div id="modalOver" style="display: none;">
+
+</div>
+
+<div id="zoomArea"></div>
+
+<div id="canvas" style="width: 100%; height: 100%; margin: 0 auto; position: relative; box-sizing: border-box; padding: 10px;">
+
+
+    <div id="pnlControls" class="controls-pdf controls-md" data-disable-events="true" style="display: none;">
+
+
+        <a id="btnNavStart" style="display: none;">
+            <div class="hz-icon hz-icn-start" style="background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></div>
+        </a>
+        <a id="btnNavPrev" style="display: none;">
+            <div class="hz-icon hz-icn-prev" style="background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></div>
+        </a>
+        <a id="btnNavNext" style="display: none;">
+            <div class="hz-icon hz-icn-next" style="background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></div>
+        </a>
+        <a id="btnNavEnd" style="display: none;">
+            <div class="hz-icon hz-icn-end" style="background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></div>
+        </a>
+
+        <a id="btnNavPanel" class="hz-icon hz-icn-nav" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+        <a id="btnShare" data-stats="share" class="hz-icon-2 hz-icn-share" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+        <a id="btnDownPdf" href="" data-stats="download" target="_blank" class="hz-icon hz-icn-down down-pdf" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+        <a id="btnPrint" data-print="" data-stats="print" class="hz-icon-2 hz-icn-print" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+        <a class="zoom-icon zoom-icon-in hz-icon" data-stats="zoom" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+        <a id="btnFullscreen" data-stats="fullscreen" class="fullscreen-button hz-icon hz-icn-fullscreen-on" onclick="if (typeof toggleFullScreen != 'undefined') { toggleFullScreen(); } return false;"></a>
+        <a id="btnSearch" data-stats="share" class="hz-icon-2 hz-icn-search" style="display: none; background-image: url('https://cdnc.heyzine.com/flipbook/img/iconset2_6.png')"></a>
+
+        <a id="btnSoundOff" data-stats="soundoff" class="hz-icon hz-icn-sound-on" style="display: none;"></a>
+
+    </div>
+
+
+
+    <div id="pnlZoomStep" class="controls-pdf controls-zoom-step controls-md" style="display: none;">
+        <a class="btnZoomMore hz-icon hz-icn-zoom-more" data-disable-events="true" data-disable-zoom="true"></a>
+        <a class="btnZoomLess hz-icon hz-icn-zoom-less" data-disable-events="true" data-disable-zoom="true"></a>
+    </div>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<script>
+    (function () {
+        var savedLang = localStorage.getItem('trndk_language') || 'en';
+        document.documentElement.setAttribute('lang', savedLang);
+        document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+    })();
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="TRNDK Business Solutions - Feasibility Studies, Google Ads, Social Media Management and more">
+    <title>Business Solutions | TRNDK</title>
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">-->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D93438',
+                        secondary: '#5A9BD5',
+                        light: '#EAEAEA',
+                        dark: '#1a1a1a'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html:not(.lang-ready) body {
+            visibility: hidden;
+        }
+
+        html.lang-ready body {
+            visibility: visible;
+        }
+
+
+        [lang="en"] body,
+        [lang="en"] body * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        [lang="ar"] body,
+        [lang="ar"] body * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+
+        .navbar .nav-link {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: #D93438;
+        }
+
+
+        .navbar #mobileMenuBtn {
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled .nav-link {
+            color: #1a1a1a;
+        }
+
+        .navbar.scrolled .nav-link:hover {
+            color: #D93438;
+        }
+
+        .navbar.scrolled #mobileMenuBtn {
+            color: #1a1a1a;
+        }
+
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu .nav-link {
+            color: #1a1a1a !important;
+        }
+
+        .mobile-menu .nav-link:hover {
+            color: #D93438 !important;
+        }
+
+
+        .lang-btn {
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #D93438 0%, #a82a2d 50%, #5A9BD5 100%);
+        }
+
+
+        .sub-service-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .sub-service-card.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sub-service-card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 20px 40px rgba(217, 52, 56, 0.15);
+        }
+
+        .sub-service-card .p-5 {
+            flex-grow: 1;
+        }
+
+
+        .sub-service-card .card-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sub-service-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+
+        .sub-service-link {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            border-radius: 1rem;
+        }
+
+        .sub-service-link:hover,
+        .sub-service-link:focus {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+        }
+
+
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #D93438;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            min-height: 42px;
+            white-space: nowrap;
+            transition: background 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 2px 8px rgba(217, 52, 56, 0.2);
+            flex-shrink: 0;
+        }
+
+        .store-badge svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+
+        .sub-service-card:hover .store-badge {
+            background: #b92d30;
+            box-shadow: 0 4px 14px rgba(217, 52, 56, 0.3);
+        }
+
+
+        :root {
+            --brand-dark-bg: #1a1a1a;
+        }
+
+
+        .bottom-section-wrapper {
+            background-color: #1a1a1a !important;
+            background: #1a1a1a !important;
+        }
+
+        .cta-section,
+        .footer-seamless {
+            background-color: transparent !important;
+            background: transparent !important;
+        }
+
+
+        .header-logo {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-logo {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+
+
+
+        @media (max-width: 480px) {
+            .header-logo {
+                height: 30px;
+            }
+
+            .lang-btn {
+                min-height: 44px;
+                min-width: 80px;
+                padding: 0.5rem 1rem;
+            }
+
+            .hero-gradient {
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+
+            .footer-seamless .grid {
+                gap: 1.5rem;
+            }
+
+            .cta-section {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .cta-section .absolute {
+                opacity: 0.5;
+            }
+
+            .store-badge {
+                padding: 8px 18px;
+                font-size: 0.8rem;
+                min-height: 38px;
+            }
+        }
+
+
+        @media (max-width: 640px) {
+            .header-logo {
+                height: 32px;
+            }
+
+            section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .cta-section a[href^="mailto"] {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .sub-service-card .p-5 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+            }
+
+            [dir="rtl"] .sub-service-card .p-5 {
+                align-items: flex-end;
+            }
+        }
+
+
+        @media (min-width: 640px) and (max-width: 1024px) {
+            .header-logo {
+                height: 38px;
+            }
+
+            .footer-seamless .grid {
+                gap: 2rem;
+            }
+        }
+
+
+        @media (min-width: 1024px) and (max-width: 1280px) {
+            .header-logo {
+                height: 40px;
+            }
+        }
+
+
+        @media (min-width: 1536px) {
+            .max-w-7xl {
+                max-width: 1400px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .header-logo {
+                height: 34px;
+            }
+
+            .footer-logo {
+                height: 36px;
+            }
+
+            .footer-seamless .grid {
+                text-align: center;
+            }
+
+            .mobile-menu {
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .blur-3xl {
+                filter: blur(40px);
+            }
+        }
+
+
+        @media (hover: none) and (pointer: coarse) {
+            .sub-service-card:hover {
+                transform: none !important;
+            }
+
+            .sub-service-card:active {
+                transform: scale(0.98) !important;
+                transition: transform 0.1s ease;
+            }
+
+            .nav-link {
+                min-height: 48px;
+            }
+
+            .lang-btn {
+                min-height: 48px;
+            }
+        }
+
+
+        [dir="rtl"] .footer-seamless .grid {
+            direction: rtl;
+        }
+
+        @media (max-width: 768px) {
+            [dir="rtl"] .text-center {
+                text-align: center;
+            }
+        }
+
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 640px) {
+
+            p,
+            li {
+                line-height: 1.7;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+
+
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+            <a href="index.html" class="flex items-center">
+                <img src="images/logo.png" alt="TRNDK Logo" class="header-logo">
+            </a>
+
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="about.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="portfolio.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Business Gallery" data-ar="معرض الأعمال">Business Gallery</a>
+                <a href="blog.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Blog" data-ar="المدونة">Blog</a>
+                <a href="index.html#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a>
+            </div>
+
+
+            <div class="flex items-center gap-4">
+                <button id="langToggle"
+                    class="lang-btn bg-primary text-white px-4 py-2 rounded-full font-semibold text-sm hover:bg-opacity-90">
+                    EN | AR
+                </button>
+
+
+                <button id="mobileMenuBtn" class="lg:hidden text-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+
+        <div id="mobileMenu"
+            class="mobile-menu lg:hidden hidden absolute top-full left-0 right-0 bg-white shadow-lg py-4">
+            <div class="flex flex-col items-center gap-4">
+                <a href="index.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="about.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="portfolio.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Business Gallery" data-ar="معرض الأعمال">Business Gallery</a>
+                <a href="blog.html" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Blog" data-ar="المدونة">Blog</a>
+                <a href="index.html#contact" class="nav-link text-dark hover:text-primary transition-colors font-medium"
+                    data-en="Contact Us" data-ar="تواصل معنا">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="hero-gradient min-h-[50vh] flex items-center justify-center pt-24 pb-16 px-6">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <div class="mb-4">
+                <a href="index.html#services"
+                    class="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm font-medium">
+                    <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span data-en="Back to Services" data-ar="العودة للخدمات">Back to Services</span>
+                </a>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-en="Business Solutions"
+                data-ar="حلول الأعمال">
+                Business Solutions
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 max-w-2xl mx-auto"
+                data-en="Comprehensive business solutions tailored to meet your needs and achieve your goals."
+                data-ar="حلول أعمال متكاملة مصممة خصيصًا لتلبية احتياجات عملك وتحقيق أهدافك.">
+                Comprehensive business solutions tailored to meet your needs and achieve your goals.
+            </p>
+        </div>
+    </section>
+
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4" data-en="Our Business Solutions"
+                    data-ar="حلول الأعمال الذكية">Our Business Solutions</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto"
+                    data-en="Explore our full range of business solutions designed to grow your brand and streamline your operations."
+                    data-ar="استكشف مجموعتنا الكاملة من حلول الأعمال المصممة لتنمية علامتك التجارية وتبسيط عملياتك.">
+                    Explore our full range of business solutions designed to grow your brand and streamline your
+                    operations.
+                </p>
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/30.jpg" alt="Feasibility Studies"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Feasibility Studies"
+                                    data-ar="دراسة جدوى">Feasibility Studies</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark"
+                                data-en="Feasibility Studies (Projects – E-commerce)"
+                                data-ar="دراسة جدوى (مشاريع – متاجر)">Feasibility Studies (Projects –
+                                E-commerce)</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/26.jpg" alt="Script Writing"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Script Writing"
+                                    data-ar="كتابة اسكربتات">Script Writing</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Script Writing" data-ar="كتابة اسكربتات">
+                                Script
+                                Writing</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/27.jpg" alt="Full Course Creation"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Course Creation"
+                                    data-ar="كتابة كورس">Course Creation</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Full Course Creation (All Fields)"
+                                data-ar="كتابة كورس كامل لجميع المجالات">Full Course Creation (All Fields)</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/16.jpg" alt="Google Ads Account Setup"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Google Ads"
+                                    data-ar="حساب إعلاني">Google Ads</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Google Ads Account Setup"
+                                data-ar="خدمة إنشاء حساب إعلاني Google Ads">Google Ads Account Setup</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/17.jpg" alt="Google Reviews Services"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Google Reviews"
+                                    data-ar="تقييمات جوجل">Google Reviews</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Google Reviews Services"
+                                data-ar="تقييمات جوجل">Google Reviews Services</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/18.jpg" alt="Unified Link Creation Service"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Unified Link"
+                                    data-ar="رابط موحد">Unified Link</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Unified Link Creation Service"
+                                data-ar="خدمة إنشاء رابط موحد لجميع الروابط">Unified Link Creation Service</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/19.jpg" alt="Business Name Research"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Name Research"
+                                    data-ar="اسم مشروعك">Name Research</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Business Name Research &amp; Branding"
+                                data-ar="البحث عن اسم لمشروعك">Business Name Research &amp; Branding</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/20.jpg" alt="Google Maps Services"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Google Maps"
+                                    data-ar="خرائط قوقل">Google Maps</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Google Maps Services"
+                                data-ar="خدمات خرائط قوقل (Google Map)">Google Maps Services</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/21.jpg" alt="Google Maps Verification Issue Resolution"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Verification Fix"
+                                    data-ar="حل مشاكل التوثيق">Verification
+                                    Fix</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark"
+                                data-en="Google Maps &amp; Verification Issue Resolution"
+                                data-ar="حل مشاكل التوثيق ومشاكل جوجل ماب">Google Maps &amp; Verification Issue
+                                Resolution
+                            </h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/22.jpg" alt="Gmail Account Creation"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Gmail Setup"
+                                    data-ar="إنشاء Gmail">Gmail Setup</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Gmail Account Creation"
+                                data-ar="إنشاء حساب Gmail">Gmail Account Creation</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/23.jpg" alt="Professional Social Media Account Setup"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Social Media Setup"
+                                    data-ar="حسابات سوشيال ميديا">Social Media Setup</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Professional Social Media Account Setup"
+                                data-ar="إنشاء حسابات سوشيال ميديا احترافية">Professional Social Media Account Setup
+                            </h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://store.trndk.com/services?category=Business+Solutions" target="_blank"
+                    rel="noopener noreferrer" class="sub-service-link">
+                    <div
+                        class="sub-service-card bg-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden relative">
+                            <img src="images/Business-Solutions/15.jpg" alt="Paid Advertising Campaigns"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                            <div
+                                class="card-overlay absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-4">
+                                <span class="text-white font-semibold text-sm" data-en="Ad Campaigns"
+                                    data-ar="حملات إعلانية">Ad Campaigns</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-dark" data-en="Paid Advertising Campaigns"
+                                data-ar="حملات إعلانية على السوشيال ميديا">
+                                Paid Advertising Campaigns</h3>
+                            <span class="store-badge" data-en="Order Now" data-ar="اطلب الآن">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Order Now
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <div class="bottom-section-wrapper" style="background-color: #1a1a1a;">
+
+
+        <section id="contact" class="cta-section py-20 px-6 relative overflow-hidden">
+
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <div class="mb-8">
+                    <span
+                        class="inline-block px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-semibold mb-6"
+                        data-en="Let's Connect" data-ar="لنتواصل">Let's Connect</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+                        data-en="Have a question or a project in mind?" data-ar="لديك استفسار أو مشروع؟">
+                        Have a question or a project in mind?
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10"
+                        data-en="Get in touch with us and let's transform your vision into reality."
+                        data-ar="تواصل معنا الآن ودعنا نحول رؤيتك إلى واقع.">
+                        Get in touch with us and let's transform your vision into reality.
+                    </p>
+                </div>
+
+                <a href="mailto:trendaak@gmail.com?subject=Inquiry from TRNDK Website"
+                    class="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1">
+                    <span data-en="Contact Us" data-ar="تواصل معنا">Contact Us</span>
+                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+
+                <p class="mt-8 text-gray-500 text-sm" data-en="We typically respond within 24 hours"
+                    data-ar="نرد عادةً خلال 24 ساعة">
+                    We typically respond within 24 hours
+                </p>
+            </div>
+        </section>
+
+
+        <footer class="footer-seamless text-white py-4 px-6 relative overflow-hidden">
+
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+
+
+                    <div class="text-center md:text-start flex flex-col items-center md:items-start">
+                        <a href="index.html" class="inline-block mb-2">
+                            <img src="images/logo.png" alt="TRNDK Logo" class="footer-logo">
+                        </a>
+                        <p class="text-gray-400 text-sm" data-en="Your partner in digital success"
+                            data-ar="شريكك في النجاح الرقمي">Your partner in digital success</p>
+                    </div>
+
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://www.facebook.com/trndk.co/" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="https://x.com/trndk_co" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="X (Twitter)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/trndk.co/" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@trndk.co?lang=ar" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="TikTok">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@trndk_CO" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="YouTube">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.snapchat.com/@trndk.co" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-primary transition-colors" aria-label="Snapchat">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z" />
+                            </svg>
+                        </a>
+                        <a href="https://t.me/TrndkSupport" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-secondary transition-colors" aria-label="Telegram Support">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                            </svg>
+                        </a>
+                    </div>
+
+
+                    <div class="text-center md:text-end">
+                        <p class="text-xl text-gray-400" data-en="© 2026 TRNDK. All rights reserved."
+                            data-ar="© 2026 ترندك. جميع الحقوق محفوظة.">
+                            © 2026 TRNDK. All rights reserved.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Sub-service card scroll animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Stagger the animation for each card
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.sub-service-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
