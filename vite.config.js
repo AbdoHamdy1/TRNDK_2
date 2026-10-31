@@ -1,42 +1,77 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { resolve, extname, join } from 'path';
+import { existsSync, statSync, createReadStream, readdirSync, copyFileSync, mkdirSync } from 'fs';
+
+function copyDirRecursive(source, target) {
+  if (!existsSync(target)) {
+    mkdirSync(target, { recursive: true });
+  }
+  const entries = readdirSync(source, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = join(source, entry.name);
+    const destPath = join(target, entry.name);
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+    }
+  }
+}
 
 export default defineConfig({
-  root: '.',
+  root: resolve(__dirname, 'src/dev'),
   base: './',
+  resolve: {
+    alias: {
+      '/src': resolve(__dirname, 'src'),
+      '@': resolve(__dirname, 'src'),
+      '/images': resolve(__dirname, 'images'),
+    },
+  },
   server: {
-    open: '/src/dev/index.html',
+    fs: {
+      allow: [resolve(__dirname)],
+    },
   },
   plugins: [
     {
-      name: 'dev-shell-handler',
+      name: 'serve-and-copy-images',
       configureServer(server) {
-        // Rewrite root requests during dev to the isolated dev shell
-        server.middlewares.use((req, res, next) => {
-          if (req.url === '/' || req.url === '/index.html') {
-            req.url = '/src/dev/index.html';
+        // Serve existing root images directory in development
+        server.middlewares.use('/images', (req, res, next) => {
+          const cleanUrl = req.url.split('?')[0].replace(/^\//, '');
+          const filePath = resolve(__dirname, 'images', cleanUrl);
+
+          if (existsSync(filePath) && !statSync(filePath).isDirectory()) {
+            const ext = extname(filePath).toLowerCase();
+            const mimeTypes = {
+              '.png': 'image/png',
+              '.jpg': 'image/jpeg',
+              '.jpeg': 'image/jpeg',
+              '.svg': 'image/svg+xml',
+              '.webp': 'image/webp',
+              '.ico': 'image/x-icon',
+            };
+            res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+            res.setHeader('Cache-Control', 'no-cache');
+            createReadStream(filePath).pipe(res);
+            return;
           }
           next();
         });
       },
       closeBundle() {
-        // Generate root index.html in dist/ for Apache hosting while preserving source separation
-        const devHtmlPath = resolve(__dirname, 'dist/src/dev/index.html');
-        const rootDistHtmlPath = resolve(__dirname, 'dist/index.html');
-        if (existsSync(devHtmlPath)) {
-          const content = readFileSync(devHtmlPath, 'utf-8');
-          const rootContent = content.replace(/\.\.\/\.\.\/assets\//g, './assets/');
-          writeFileSync(rootDistHtmlPath, rootContent, 'utf-8');
+        // Copy existing root images to dist/images for production Apache deployment & preview
+        const srcImages = resolve(__dirname, 'images');
+        const distImages = resolve(__dirname, 'dist/images');
+        if (existsSync(srcImages)) {
+          copyDirRecursive(srcImages, distImages);
         }
       },
     },
   ],
   build: {
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
-    rollupOptions: {
-      input: resolve(__dirname, 'src/dev/index.html'),
-    },
   },
 });
