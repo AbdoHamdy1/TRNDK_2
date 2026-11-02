@@ -321,7 +321,75 @@
       </div>
     </section>
 
+    <!-- ======================================================================= -->
+    <!-- Trusted Clients Section (Modular Mount - Hidden until approved logos)    -->
+    <!-- ======================================================================= -->
+    <section id="trustedClients" class="relative py-12 border-y border-white/5 bg-[#121316]/50 overflow-hidden hidden" aria-label="Trusted Clients">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="text-center mb-8">
+          <p class="text-xs uppercase tracking-widest text-slate-400 font-semibold" data-i18n="clients.badge">شركاء النجاح</p>
+        </div>
+        <div class="clients-track flex flex-wrap items-center justify-center gap-8 md:gap-14">
+          <!-- Approved client logos will be rendered here dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- Interactive Services Explorer Section                                   -->
+    <!-- ======================================================================= -->
+    <section id="services" class="relative py-20 sm:py-24 lg:py-32 bg-[#121316] overflow-hidden">
+      <!-- Ambient Glow Elements -->
+      <div class="ambient-glow-subtle top-1/4 -right-32 rtl:-right-auto rtl:-left-32"></div>
+      <div class="ambient-glow-red bottom-10 -left-20 rtl:-left-auto rtl:-right-20 opacity-30"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm font-medium text-slate-300 mb-4 backdrop-blur-sm shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            <span data-i18n="services.badge">منظومة الخدمات</span>
+          </div>
+          
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+            <span data-i18n="services.title">خدماتنا</span>
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+            <span data-i18n="services.desc">حلول إبداعية وتقنية متكاملة تساعد علامتك التجارية على بناء حضورها وتحقيق أهدافها.</span>
+          </p>
+        </div>
+
+        <!-- Category Navigation Tabs -->
+        <div class="flex items-center justify-start sm:justify-center overflow-x-auto pb-4 mb-8 sm:mb-12 no-scrollbar" role="region" aria-label="Service Categories Navigation">
+          <div id="servicesTabs" class="flex items-center gap-2 sm:gap-3 p-1.5 rounded-full bg-white/[0.03] border border-white/5 backdrop-blur-sm" role="tablist" aria-label="Service Categories" data-i18n-aria="services.tabsAria">
+            <!-- Dynamically populated category tabs -->
+          </div>
+        </div>
+
+        <!-- Active Category Info Banner -->
+        <div id="categoryInfo" class="mb-10 sm:mb-12">
+          <!-- Dynamically populated category description & store link -->
+        </div>
+
+        <!-- Services Cards Grid -->
+        <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-12" role="tabpanel" aria-labelledby="servicesTabs">
+          <!-- Dynamically populated service cards -->
+        </div>
+
+        <!-- View All / Show Less Expansion Control -->
+        <div id="servicesExpansion" class="flex justify-center items-center">
+          <!-- Dynamically populated expansion button -->
+        </div>
+
+      </div>
+    </section>
+
   </main>
+
+  <!-- Floating Toast Notification for Service Selection Hook -->
+  <aside id="serviceToast" class="fixed bottom-6 start-6 z-50 hidden max-w-md w-[calc(100%-3rem)] sm:w-auto" aria-live="polite" aria-atomic="true"></aside>
 
   <!-- ES Module Entry -->
   <script type="module" src="/src/js/main.js"></script>
