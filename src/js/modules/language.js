@@ -151,6 +151,48 @@ export const translations = {
       ar: 'يمكنك التواصل معنا عبر نموذج طلب عرض السعر في الموقع، أو من خلال قنوات التواصل المباشرة المتاحة للاستفسار وبدء مناقشة مشروعك.',
       en: 'You can reach us through the quote request form on the website or via available direct communication channels to discuss your project.'
     }
+  },
+  contact: {
+    sectionAria: { ar: 'تواصل معنا', en: 'Contact Us' },
+    badge: { ar: 'تواصل معنا', en: 'Get In Touch' },
+    title: { ar: 'لنبدأ محادثة حول مشروعك القادم', en: "Let's Start a Conversation About Your Project" },
+    desc: {
+      ar: 'فريقنا جاهز لمساعدتك في تحويل أفكارك إلى حلول رقمية وإبداعية تدعم نمو أعمالك. تواصل معنا عبر قنواتنا المعتمدة.',
+      en: 'Our team is ready to help transform your vision into creative and technical solutions that drive business growth. Reach out through our verified channels.'
+    },
+    emailLabel: { ar: 'البريد الإلكتروني', en: 'Email Address' },
+    emailNote: { ar: 'نرد عادةً خلال 24 ساعة', en: 'We typically respond within 24 hours' },
+    emailAction: { ar: 'إرسال بريد إلكتروني', en: 'Send an Email' },
+    telegramLabel: { ar: 'الدعم المباشر عبر تيليجرام', en: 'Telegram Support' },
+    telegramNote: { ar: 'تواصل سريع وفوري مع فريقنا', en: 'Fast & direct communication with our team' },
+    telegramAction: { ar: 'بدء محادثة تيليجرام', en: 'Open Telegram' },
+    quoteNoticeBadge: { ar: 'طلب عرض سعر', en: 'Quotation Request' },
+    quoteNoticeText: {
+      ar: 'نموذج التسعير المخصص قيد المراجعة والاعتماد. في الوقت الحالي، نرحب باستقبال متطلبات مشروعك مباشرة عبر البريد الإلكتروني أو تيليجرام لمناقشتها فوراً.',
+      en: 'The custom quotation form is currently pending client review and approval. In the meantime, you are welcome to send your project requirements directly via email or Telegram.'
+    },
+    socialTitle: { ar: 'قنواتنا الرسمية المعتمدة', en: 'Official Verified Channels' }
+  },
+  footer: {
+    tagline: {
+      ar: 'منظومتك التقنية والإبداعية المتكاملة لبناء الهوية الرقمية، تطوير المواقع والمتاجر، وتسريع نمو الأعمال.',
+      en: 'Your integrated creative and technical ecosystem for digital identity, web development, and business growth.'
+    },
+    quickLinks: { ar: 'روابط سريعة', en: 'Quick Links' },
+    ecosystem: { ar: 'المنظومة والتواصل', en: 'Ecosystem & Support' },
+    social: { ar: 'تابعنا', en: 'Follow Us' },
+    home: { ar: 'الرئيسية', en: 'Home' },
+    services: { ar: 'خدماتنا', en: 'Services' },
+    portfolio: { ar: 'أعمالنا', en: 'Portfolio' },
+    about: { ar: 'من نحن', en: 'About' },
+    howWeWork: { ar: 'منهجية العمل', en: 'How We Work' },
+    faq: { ar: 'الأسئلة الشائعة', en: 'FAQ' },
+    contact: { ar: 'تواصل معنا', en: 'Contact' },
+    backToTop: { ar: 'العودة للأعلى', en: 'Back to Top' },
+    copyright: {
+      ar: '© 2026 ترندك. جميع الحقوق محفوظة.',
+      en: '© 2026 TRNDK. All rights reserved.'
+    }
   }
 };
 
