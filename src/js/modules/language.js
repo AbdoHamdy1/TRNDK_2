@@ -73,6 +73,35 @@ export const translations = {
       ar: 'ترندك تقدم حلولاً إبداعية وتقنية متكاملة تساعد العلامات التجارية على بناء هوية رقمية قوية، تطوير مواقع ومتاجر إلكترونية، وتعزيز نمو الأعمال.',
       en: 'TRNDK delivers integrated creative and technical solutions that help brands build a strong digital identity, develop websites and e‑commerce stores, and accelerate business growth.'
     }
+  },
+  howWeWork: {
+    sectionAria: { ar: 'منهجية العمل', en: 'How We Work' },
+    badge: { ar: 'منهجية العمل', en: 'Our Process' },
+    title: { ar: 'كيف نعمل', en: 'How We Work' },
+    desc: {
+      ar: 'خطوات مدروسة ومبسطة تنقل فكرتك من مرحلة التخطيط إلى الإطلاق والنمو المستمر.',
+      en: 'A structured, streamlined process taking your project from planning to launch and sustained growth.'
+    },
+    step1Title: { ar: 'الاكتشاف', en: 'Discovery' },
+    step1Desc: {
+      ar: 'فهم احتياجات العميل وأهداف المشروع.',
+      en: 'Understanding client needs and project objectives.'
+    },
+    step2Title: { ar: 'الاستراتيجية', en: 'Strategy' },
+    step2Desc: {
+      ar: 'وضع الاستراتيجية المناسبة وتحديد خطة التنفيذ.',
+      en: 'Developing the right strategy and defining the execution plan.'
+    },
+    step3Title: { ar: 'التنفيذ', en: 'Execution' },
+    step3Desc: {
+      ar: 'تنفيذ الحلول الإبداعية والتقنية المتفق عليها.',
+      en: 'Executing the agreed-upon creative and technical solutions.'
+    },
+    step4Title: { ar: 'الإطلاق والنمو', en: 'Launch & Growth' },
+    step4Desc: {
+      ar: 'إطلاق المشروع ومتابعة فرص التطوير والنمو.',
+      en: 'Launching the project and pursuing growth and development opportunities.'
+    }
   }
 };
 
