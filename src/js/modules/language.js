@@ -1,5 +1,5 @@
 /**
- * TRNDK Language Manager Module (Phase 2 & 3)
+ * TRNDK Language Manager Module (Phase 2, 3 & 4)
  * Handles Arabic / English localization with RTL/LTR directional layout and font switching.
  * Safe DOM updates using dedicated data-i18n text spans to preserve SVG icons and nested markup.
  */
@@ -55,6 +55,16 @@ export const translations = {
     showLess: { ar: 'عرض أقل', en: 'Show Less' },
     quoteBtn: { ar: 'طلب عرض سعر', en: 'Request a Quote' },
     storeBtn: { ar: 'عرض في المتجر', en: 'View in Store' },
+  },
+  portfolio: {
+    badge: { ar: 'معرض الأعمال', en: 'Selected Portfolio' },
+    title: { ar: 'أعمالنا', en: 'Our Work' },
+    desc: {
+      ar: 'نماذج واقعية من مشاريع الهوية البصرية والمتاجر والمواقع الإلكترونية التي نفذناها باحترافية.',
+      en: 'Authentic brand identities, e-commerce stores, and corporate websites delivered with excellence.'
+    },
+    filtersAria: { ar: 'تصنيفات معرض الأعمال', en: 'Portfolio Category Filters' },
+    gridAria: { ar: 'شبكة مشاريع معرض الأعمال', en: 'Portfolio Projects Grid' },
   }
 };
 

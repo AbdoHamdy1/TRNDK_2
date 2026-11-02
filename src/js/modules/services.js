@@ -1,7 +1,8 @@
 /**
- * TRNDK Interactive Service Explorer Module (Phase 3)
+ * TRNDK Interactive Service Explorer Module (Phase 3 & 4)
  * Handles:
  * - 5 category tabs with live service counts
+ * - Smooth active tab centering on mobile viewport
  * - Keyboard accessible tab navigation (Arrow keys, Home, End)
  * - Initial 6-card display with View All / Show Less toggle for >6 items
  * - External category store link with target="_blank" rel="noopener noreferrer"
@@ -95,17 +96,35 @@ class ServicesManager {
         e.preventDefault();
         const targetTab = tabs[newIndex];
         const newCatId = targetTab.getAttribute('data-category-id');
-        this.selectCategory(newCatId);
+        this.selectCategory(newCatId, true);
         targetTab.focus();
       });
     }
   }
 
-  selectCategory(categoryId) {
-    if (this.activeCategoryId === categoryId) return;
+  selectCategory(categoryId, shouldScroll = true) {
+    if (this.activeCategoryId === categoryId) {
+      if (shouldScroll) this.scrollActiveTabIntoView();
+      return;
+    }
     this.activeCategoryId = categoryId;
     this.isExpanded = false; // Reset expansion state on category change
     this.render();
+    if (shouldScroll) {
+      this.scrollActiveTabIntoView();
+    }
+  }
+
+  scrollActiveTabIntoView() {
+    if (!this.tabsContainer) return;
+    const activeTab = this.tabsContainer.querySelector(`[data-category-id="${this.activeCategoryId}"]`);
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
   }
 
   toggleExpansion() {
@@ -217,7 +236,7 @@ class ServicesManager {
     this.tabsContainer.querySelectorAll('[role="tab"]').forEach(btn => {
       btn.addEventListener('click', () => {
         const catId = btn.getAttribute('data-category-id');
-        this.selectCategory(catId);
+        this.selectCategory(catId, true);
       });
     });
   }

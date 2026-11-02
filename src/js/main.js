@@ -4,13 +4,15 @@ import { languageManager } from './modules/language.js';
 import { navigationManager } from './modules/navigation.js';
 import { trustedClientsManager } from './modules/trusted-clients.js';
 import { servicesManager } from './modules/services.js';
+import { portfolioManager } from './modules/portfolio.js';
 
 function bootstrap() {
   languageManager.init();
   navigationManager.init();
   trustedClientsManager.init([]); // Pending approved client assets
   servicesManager.init(languageManager.getCurrentLanguage());
-  console.log('TRNDK Redesign - Phase 3 Initialized (Trusted Clients & Services Explorer)');
+  portfolioManager.init(languageManager.getCurrentLanguage());
+  console.log('TRNDK Redesign - Phase 4 Initialized (Featured Portfolio)');
 }
 
 if (document.readyState === 'loading') {
@@ -25,5 +27,6 @@ window.__TRNDK__ = {
   navigationManager,
   trustedClientsManager,
   servicesManager,
+  portfolioManager,
   selectedService: null,
 };
