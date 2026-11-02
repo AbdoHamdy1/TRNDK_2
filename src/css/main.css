@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------------- */
-/* TRNDK Redesign - Phase 2 Stylesheet                                        */
+/* TRNDK Redesign - Phase 2 & 3 Stylesheet                                    */
 /* -------------------------------------------------------------------------- */
 
 :root {
@@ -53,7 +53,7 @@ body {
   padding-bottom: 0.85rem;
 }
 
-/* Ambient Radial Red Lighting for Hero */
+/* Ambient Radial Red Lighting for Hero & Services */
 .ambient-glow-red {
   position: absolute;
   width: 500px;
@@ -114,6 +114,31 @@ body {
   animation: dashFlow 25s linear infinite;
 }
 
+/* Scrollbar Hiding Utility for Overflow Tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Toast Animations */
+@keyframes fadeInToast {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInToast 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -126,7 +151,8 @@ body {
   }
   .animate-float-slow,
   .animate-float-delay,
-  .svg-dash-flow {
+  .svg-dash-flow,
+  .animate-fade-in {
     animation: none !important;
   }
 }

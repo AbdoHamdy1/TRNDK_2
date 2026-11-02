@@ -1,5 +1,5 @@
 /**
- * TRNDK Language Manager Module (Phase 2)
+ * TRNDK Language Manager Module (Phase 2 & 3)
  * Handles Arabic / English localization with RTL/LTR directional layout and font switching.
  * Safe DOM updates using dedicated data-i18n text spans to preserve SVG icons and nested markup.
  */
@@ -34,6 +34,27 @@ export const translations = {
     visualGrowth: { ar: 'النمو', en: 'Growth' },
     visualCenter: { ar: 'ترندك', en: 'TRNDK' },
     visualCenterSub: { ar: 'منظومة متكاملة', en: 'Integrated Ecosystem' },
+  },
+  clients: {
+    badge: { ar: 'شركاء النجاح', en: 'Trusted Partners' },
+    title: { ar: 'عملاؤنا الموثوقون', en: 'Trusted by Industry Leaders' },
+    desc: {
+      ar: 'فخورون بالتعاون مع علامات تجارية طموحة في رحلة نموها وتحقيق أهدافها.',
+      en: 'Proud to collaborate with ambitious brands on their growth journeys.'
+    }
+  },
+  services: {
+    badge: { ar: 'منظومة الخدمات', en: 'Service Ecosystem' },
+    title: { ar: 'خدماتنا', en: 'Our Services' },
+    desc: {
+      ar: 'حلول إبداعية وتقنية متكاملة تساعد علامتك التجارية على بناء حضورها وتحقيق أهدافها.',
+      en: 'Integrated creative and technical solutions that help your brand build its presence and achieve its goals.'
+    },
+    tabsAria: { ar: 'أقسام الخدمات', en: 'Service Categories' },
+    viewAll: { ar: 'عرض جميع الخدمات', en: 'View All Services' },
+    showLess: { ar: 'عرض أقل', en: 'Show Less' },
+    quoteBtn: { ar: 'طلب عرض سعر', en: 'Request a Quote' },
+    storeBtn: { ar: 'عرض في المتجر', en: 'View in Store' },
   }
 };
 
