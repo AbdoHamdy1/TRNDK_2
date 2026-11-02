@@ -5,6 +5,7 @@ import { navigationManager } from './modules/navigation.js';
 import { trustedClientsManager } from './modules/trusted-clients.js';
 import { servicesManager } from './modules/services.js';
 import { portfolioManager } from './modules/portfolio.js';
+import { aboutManager } from './modules/about.js';
 
 function bootstrap() {
   languageManager.init();
@@ -12,7 +13,7 @@ function bootstrap() {
   trustedClientsManager.init([]); // Pending approved client assets
   servicesManager.init(languageManager.getCurrentLanguage());
   portfolioManager.init(languageManager.getCurrentLanguage());
-  console.log('TRNDK Redesign - Phase 4 Initialized (Featured Portfolio)');
+  aboutManager.init();
 }
 
 if (document.readyState === 'loading') {
