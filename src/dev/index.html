@@ -22,6 +22,18 @@
       document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
     })();
   </script>
+  <!-- Minimal Critical CSS -->
+  <style>
+    html,
+    body {
+      background-color: #121316;
+      color: #ffffff;
+    }
+  </style>
+
+  <!-- Application Stylesheets (Render-Blocking) -->
+  <link rel="stylesheet" href="/src/css/tailwind.css" />
+  <link rel="stylesheet" href="/src/css/main.css" />
 </head>
 <body class="bg-[#121316] text-white min-h-screen selection:bg-primary selection:text-white antialiased font-cairo overflow-x-hidden">
 
