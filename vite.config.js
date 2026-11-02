@@ -39,7 +39,7 @@ export default defineConfig({
       configureServer(server) {
         // Serve existing root images directory in development
         server.middlewares.use('/images', (req, res, next) => {
-          const cleanUrl = req.url.split('?')[0].replace(/^\//, '');
+          const cleanUrl = decodeURIComponent(req.url.split('?')[0].replace(/^\//, ''));
           const filePath = resolve(__dirname, 'images', cleanUrl);
 
           if (existsSync(filePath) && !statSync(filePath).isDirectory()) {
