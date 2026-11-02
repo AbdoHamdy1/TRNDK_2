@@ -1,5 +1,3 @@
-import '../css/tailwind.css';
-import '../css/main.css';
 import { languageManager } from './modules/language.js';
 import { navigationManager } from './modules/navigation.js';
 import { trustedClientsManager } from './modules/trusted-clients.js';
