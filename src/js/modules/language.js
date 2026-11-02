@@ -61,10 +61,18 @@ export const translations = {
     title: { ar: 'أعمالنا', en: 'Our Work' },
     desc: {
       ar: 'نماذج واقعية من مشاريع الهوية البصرية والمتاجر والمواقع الإلكترونية التي نفذناها باحترافية.',
-      en: 'Authentic brand identities, e-commerce stores, and corporate websites delivered with excellence.'
+      en: 'Authentic brand identities, e‑commerce stores, and corporate websites delivered with excellence.'
     },
     filtersAria: { ar: 'تصنيفات معرض الأعمال', en: 'Portfolio Category Filters' },
     gridAria: { ar: 'شبكة مشاريع معرض الأعمال', en: 'Portfolio Projects Grid' },
+  },
+  about: {
+    badge: { ar: 'من نحن', en: 'About' },
+    title: { ar: 'عن ترندك', en: 'About TRNDK' },
+    desc: {
+      ar: 'ترندك تقدم حلولاً إبداعية وتقنية متكاملة تساعد العلامات التجارية على بناء هوية رقمية قوية، تطوير مواقع ومتاجر إلكترونية، وتعزيز نمو الأعمال.',
+      en: 'TRNDK delivers integrated creative and technical solutions that help brands build a strong digital identity, develop websites and e‑commerce stores, and accelerate business growth.'
+    }
   }
 };
 
@@ -130,16 +138,6 @@ class LanguageManager {
       }
     });
 
-    // Update Language Toggle Button Text
-    const toggleBtns = document.querySelectorAll('.lang-toggle-btn');
-    toggleBtns.forEach(btn => {
-      const textSpan = btn.querySelector('.lang-label');
-      if (textSpan) {
-        textSpan.textContent = lang === 'ar' ? 'EN' : 'عربي';
-      }
-      btn.setAttribute('aria-label', lang === 'ar' ? 'Switch language to English' : 'تغيير اللغة إلى العربية');
-    });
-
     // Dispatch event for any other module listening to language change
     window.dispatchEvent(new CustomEvent('trndk:languageChanged', {
       detail: { language: lang, isRtl }
@@ -161,7 +159,7 @@ class LanguageManager {
 
   bindEvents() {
     document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', e => {
         e.preventDefault();
         this.toggleLanguage();
       });
