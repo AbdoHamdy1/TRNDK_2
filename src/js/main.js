@@ -6,6 +6,7 @@ import { trustedClientsManager } from './modules/trusted-clients.js';
 import { servicesManager } from './modules/services.js';
 import { portfolioManager } from './modules/portfolio.js';
 import { aboutManager } from './modules/about.js';
+import { faqManager } from './modules/faq.js';
 
 function bootstrap() {
   languageManager.init();
@@ -14,6 +15,7 @@ function bootstrap() {
   servicesManager.init(languageManager.getCurrentLanguage());
   portfolioManager.init(languageManager.getCurrentLanguage());
   aboutManager.init();
+  faqManager.init();
 }
 
 if (document.readyState === 'loading') {
@@ -29,5 +31,6 @@ window.__TRNDK__ = {
   trustedClientsManager,
   servicesManager,
   portfolioManager,
+  faqManager,
   selectedService: null,
 };

@@ -102,6 +102,55 @@ export const translations = {
       ar: 'إطلاق المشروع ومتابعة فرص التطوير والنمو.',
       en: 'Launching the project and pursuing growth and development opportunities.'
     }
+  },
+  faq: {
+    sectionAria: { ar: 'الأسئلة الشائعة', en: 'Frequently Asked Questions' },
+    badge: { ar: 'الأسئلة الشائعة', en: 'FAQ' },
+    title: { ar: 'إجابات على استفساراتك', en: 'Frequently Asked Questions' },
+    desc: {
+      ar: 'إجابات واضحة ومباشرة على أكثر الأسئلة تداولاً حول خدماتنا ومنهجية عملنا.',
+      en: 'Clear and direct answers to commonly asked questions about our services and process.'
+    },
+    q1: {
+      ar: 'ما هي الخدمات التي تقدمها ترندك؟',
+      en: 'What services does TRNDK provide?'
+    },
+    a1: {
+      ar: 'تقدم ترندك خدمات متكاملة تشمل تصميم الهوية البصرية، تطوير المواقع والمتاجر الإلكترونية، وحلول التسويق ونمو الأعمال، بالإضافة إلى الاستشارات التقنية.',
+      en: 'TRNDK provides integrated services including brand identity design, website and e‑commerce store development, growth and marketing solutions, and technical consulting.'
+    },
+    q2: {
+      ar: 'كيف تسير آلية العمل في المشاريع؟',
+      en: 'How does the project process work?'
+    },
+    a2: {
+      ar: 'نبدأ بمرحلة الاكتشاف لفهم متطلبات المشروع، تليها مرحلة التخطيط ووضع الاستراتيجية، ثم مرحلة التنفيذ الإبداعي والتقني، وصولاً إلى الإطلاق والمتابعة.',
+      en: 'We begin with discovery to understand project requirements, followed by strategy and planning, then creative and technical execution, leading to launch and ongoing follow-up.'
+    },
+    q3: {
+      ar: 'كم تستغرق مدة تنفيذ المشروع؟',
+      en: 'How long does a project take?'
+    },
+    a3: {
+      ar: 'تختلف المدة الزمنية وفقاً لنطاق كل مشروع ومتطلباته الفنية ومرحلة الاعتمادات. يتم تحديد جدول زمني واضح ومناسب لكل مشروع بعد دراسة المتطلبات.',
+      en: 'Project timelines vary depending on project scope, technical requirements, and review stages. A tailored timeline is established after evaluating specific project needs.'
+    },
+    q4: {
+      ar: 'هل يمكنني طلب حلول مخصصة لمشروعي؟',
+      en: 'Can I request a customized solution?'
+    },
+    a4: {
+      ar: 'نعم، نقوم بتصميم وتطوير حلول مصممة خصيصاً لتناسب أهداف مشروعك وطبيعة نشاطك التجاري بدقة.',
+      en: 'Yes, we design and develop tailored solutions specifically aligned with your project goals and business requirements.'
+    },
+    q5: {
+      ar: 'كيف يمكنني التواصل مع ترندك؟',
+      en: 'How can I contact TRNDK?'
+    },
+    a5: {
+      ar: 'يمكنك التواصل معنا عبر نموذج طلب عرض السعر في الموقع، أو من خلال قنوات التواصل المباشرة المتاحة للاستفسار وبدء مناقشة مشروعك.',
+      en: 'You can reach us through the quote request form on the website or via available direct communication channels to discuss your project.'
+    }
   }
 };
 
