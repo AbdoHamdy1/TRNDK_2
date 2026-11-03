@@ -72,11 +72,13 @@
         <div class="flex items-center gap-3 sm:gap-4">
           
           <!-- Language Toggle Button -->
-          <button type="button" class="lang-toggle-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50" aria-label="Switch language to English">
-            <svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          <button type="button" class="lang-toggle-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50" data-i18n-aria="nav.langAria" aria-label="تغيير اللغة إلى الإنجليزية">
+            <svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke-width="1.8" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 12h20" />
             </svg>
-            <span class="lang-label font-mono font-bold tracking-wider">EN</span>
+            <span class="lang-label font-bold tracking-wider" data-i18n="nav.langToggle">EN</span>
           </button>
 
           <!-- Desktop Primary CTA -->
@@ -113,11 +115,22 @@
         <a href="#home" class="flex items-center gap-2">
           <img src="images/logo.png" alt="TRNDK Logo" class="h-8 w-auto object-contain" />
         </a>
-        <button id="mobileCloseBtn" type="button" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" aria-label="إغلاق القائمة الرئيسية" data-i18n-aria="nav.closeMenuAria">
+        <div class="flex items-center gap-2">
+          <!-- Drawer Language Toggle -->
+          <button type="button" class="lang-toggle-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50" data-i18n-aria="nav.langAria" aria-label="تغيير اللغة إلى الإنجليزية">
+            <svg class="w-3.5 h-3.5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke-width="1.8" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M2 12h20" />
+            </svg>
+            <span class="lang-label font-bold tracking-wider" data-i18n="nav.langToggle">EN</span>
+          </button>
+          <button id="mobileCloseBtn" type="button" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors" aria-label="إغلاق القائمة الرئيسية" data-i18n-aria="nav.closeMenuAria">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
+        </div>
       </div>
 
       <!-- Drawer Nav Links -->
@@ -186,7 +199,7 @@
             </div>
 
             <!-- Main Headline -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold text-white leading-[1.2] lg:leading-[1.15] mb-3.5 sm:mb-5 lg:mb-6 tracking-tight">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold text-white leading-[1.2] sm:leading-[1.25] md:leading-[1.25] lg:leading-[1.3] xl:leading-[1.3] mb-3.5 sm:mb-5 lg:mb-6 tracking-tight">
               <span data-i18n="hero.headline">من هوية مشروعك إلى نمو أعمالك</span>
             </h1>
 
@@ -328,7 +341,7 @@
                   <text x="250" y="247" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="800" letter-spacing="1">
                     <tspan data-i18n="hero.visualCenter">ترندك</tspan>
                   </text>
-                  <text x="250" y="262" text-anchor="middle" fill="#94A3B8" font-size="9" font-weight="500">
+                  <text x="250" y="262" text-anchor="middle" fill="#94A3B8" font-size="9" font-weight="500" class="hero-center-sub">
                     <tspan data-i18n="hero.visualCenterSub">منظومة متكاملة</tspan>
                   </text>
                 </g>
