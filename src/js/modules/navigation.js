@@ -1,8 +1,9 @@
 /**
- * TRNDK Navigation Module (Phase 2)
+ * TRNDK Navigation Module (Phase 2 & Enhancements)
  * Handles sticky glassmorphic navbar transitions on scroll,
  * accessible mobile drawer with ARIA attributes and scroll lock,
- * and keyboard navigation (Escape key handling).
+ * keyboard navigation (Escape key handling),
+ * and automatic active section highlighting via IntersectionObserver.
  */
 
 class NavigationManager {
@@ -14,6 +15,19 @@ class NavigationManager {
     this.mobileCloseBtn = null;
     this.navLinks = [];
     this.isOpen = false;
+    this.activeSectionId = null;
+    this.sectionObserver = null;
+    this.visibleSections = new Map();
+    this.sectionIds = ['home', 'services', 'portfolio', 'about', 'how-we-work', 'faq', 'contact'];
+    this.sectionToNavMap = {
+      home: 'home',
+      services: 'services',
+      portfolio: 'portfolio',
+      about: 'about',
+      'how-we-work': 'about',
+      faq: 'about',
+      contact: 'contact'
+    };
   }
 
   init() {
@@ -22,11 +36,12 @@ class NavigationManager {
     this.mobileDrawer = document.getElementById('mobileNavDrawer');
     this.mobileBackdrop = document.getElementById('mobileNavBackdrop');
     this.mobileCloseBtn = document.getElementById('mobileCloseBtn');
-    this.navLinks = document.querySelectorAll('.nav-anchor');
+    this.navLinks = document.querySelectorAll('.nav-link');
 
     this.bindScroll();
     this.bindMobileDrawer();
     this.bindAnchorScroll();
+    this.initSectionSpy();
   }
 
   bindScroll() {
@@ -138,7 +153,7 @@ class NavigationManager {
   }
 
   bindAnchorScroll() {
-    // Smooth scrolling for future and present anchors with header offset
+    // Smooth scrolling for navigation anchors with header offset
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', (e) => {
         const targetId = anchor.getAttribute('href');
@@ -147,12 +162,150 @@ class NavigationManager {
         const targetEl = document.querySelector(targetId);
         if (targetEl) {
           e.preventDefault();
+          const cleanId = targetId.replace('#', '');
+          if (this.sectionToNavMap && this.sectionToNavMap[cleanId]) {
+            this.setActiveLink(this.sectionToNavMap[cleanId]);
+          }
+
           targetEl.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          // If section is not yet implemented on the page in Phase 2
-          console.info(`[TRNDK Navigation] Anchor "${targetId}" will be implemented in a subsequent phase.`);
+
+          // Update browser history hash without jumping
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, null, targetId);
+          }
         }
       });
+    });
+  }
+
+  initSectionSpy() {
+    this.navLinks = document.querySelectorAll('.nav-link');
+
+    // 1. Setup IntersectionObserver
+    const observerOptions = {
+      root: null,
+      rootMargin: '-85px 0px -40% 0px',
+      threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    };
+
+    const handleIntersect = (entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        if (entry.isIntersecting) {
+          this.visibleSections.set(id, entry.intersectionRatio);
+        } else {
+          this.visibleSections.delete(id);
+        }
+      });
+      this.updateActiveSection();
+    };
+
+    if ('IntersectionObserver' in window) {
+      this.sectionObserver = new IntersectionObserver(handleIntersect, observerOptions);
+      this.sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          this.sectionObserver.observe(el);
+        }
+      });
+    }
+
+    // 2. Scroll listener for boundary handling and fallback
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          this.updateActiveSection();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    // 3. Handle initial hash or initial home activation
+    window.addEventListener('hashchange', () => {
+      this.handleHashNavigation();
+    });
+
+    if (window.location.hash) {
+      this.handleHashNavigation();
+    } else {
+      this.setActiveLink('home');
+    }
+  }
+
+  handleHashNavigation() {
+    const hash = window.location.hash.replace('#', '');
+    const mapped = this.sectionToNavMap[hash];
+    if (mapped) {
+      this.setActiveLink(mapped);
+    }
+  }
+
+  updateActiveSection() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Boundary 1: Top of document
+    if (scrollY < 100) {
+      this.setActiveLink('home');
+      return;
+    }
+
+    // Boundary 2: Bottom of document (Contact section)
+    if (windowHeight + scrollY >= docHeight - 80) {
+      this.setActiveLink('contact');
+      return;
+    }
+
+    // Intersecting visible sections check
+    let bestId = null;
+    let maxRatio = -1;
+
+    for (const [id, ratio] of this.visibleSections.entries()) {
+      if (ratio > maxRatio) {
+        maxRatio = ratio;
+        bestId = id;
+      }
+    }
+
+    if (bestId && this.sectionToNavMap[bestId]) {
+      this.setActiveLink(this.sectionToNavMap[bestId]);
+      return;
+    }
+
+    // Fallback: Check section positions relative to navbar header reading line
+    const headerLine = 120;
+    let currentId = 'home';
+    for (const id of this.sectionIds) {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= headerLine) {
+          currentId = id;
+        }
+      }
+    }
+
+    if (this.sectionToNavMap[currentId]) {
+      this.setActiveLink(this.sectionToNavMap[currentId]);
+    }
+  }
+
+  setActiveLink(targetId) {
+    if (this.activeSectionId === targetId) return;
+    this.activeSectionId = targetId;
+
+    const targetHref = '#' + targetId;
+    this.navLinks.forEach(link => {
+      if (link.getAttribute('href') === targetHref) {
+        link.classList.add('nav-link-active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('nav-link-active');
+        link.removeAttribute('aria-current');
+      }
     });
   }
 }
