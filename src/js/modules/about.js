@@ -1,15 +1,42 @@
 // About Section Module (Phase 5)
-// Handles any future dynamic behavior for the About section.
-// Currently only listens for language change events to allow future extensions.
+// Handles scroll-triggered entrance animations and dynamic behaviors for the About section.
 
 export const aboutManager = {
+  observer: null,
+
   init() {
-    // Listen for language change to re‑run any dynamic updates if needed.
-    window.addEventListener('trndk:languageChanged', this.onLanguageChange);
+    this.setupIntersectionObserver();
+    window.addEventListener('trndk:languageChanged', this.onLanguageChange.bind(this));
   },
+
+  setupIntersectionObserver() {
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return;
+
+    if ('IntersectionObserver' in window) {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              aboutSection.classList.add('about-in-view');
+              if (this.observer) {
+                this.observer.unobserve(entry.target);
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+          rootMargin: '0px 0px -40px 0px'
+        }
+      );
+      this.observer.observe(aboutSection);
+    } else {
+      aboutSection.classList.add('about-in-view');
+    }
+  },
+
   onLanguageChange(event) {
-    // Placeholder – currently no dynamic content.
-    // Could be used to lazy‑load assets or adjust layout per language.
-    // console.log('About section language changed', event.detail);
+    // Dynamic updates on language change if needed
   }
 };

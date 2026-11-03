@@ -69,10 +69,25 @@ export const translations = {
   about: {
     badge: { ar: 'من نحن', en: 'About' },
     title: { ar: 'عن ترندك', en: 'About TRNDK' },
+    titlePrefix: { ar: 'عن', en: 'About' },
+    titleAccent: { ar: 'ترندك', en: 'TRNDK' },
     desc: {
       ar: 'ترندك تقدم حلولاً إبداعية وتقنية متكاملة تساعد العلامات التجارية على بناء هوية رقمية قوية، تطوير مواقع ومتاجر إلكترونية، وتعزيز نمو الأعمال.',
       en: 'TRNDK delivers integrated creative and technical solutions that help brands build a strong digital identity, develop websites and e‑commerce stores, and accelerate business growth.'
-    }
+    },
+    pillar1Title: { ar: 'تصميم إبداعي', en: 'Creative Design' },
+    pillar1Desc: { ar: 'هوية بصرية وتجربة مستخدم مميزة', en: 'Distinctive visual identity & UX' },
+    pillar2Title: { ar: 'تقنية متقدمة', en: 'Advanced Tech' },
+    pillar2Desc: { ar: 'مواقع ومتاجر سريعة وقابلة للتوسع', en: 'Fast, scalable sites & stores' },
+    pillar3Title: { ar: 'نمو مستمر', en: 'Sustained Growth' },
+    pillar3Desc: { ar: 'استراتيجيات تسويقية لتعزيز الأداء', en: 'Strategic marketing & performance' },
+    coreNexus: { ar: 'منظومة متكاملة', en: 'Integrated Ecosystem' },
+    nodeDesignTitle: { ar: 'التصميم', en: 'Design' },
+    nodeDesignSub: { ar: 'هوية وتجربة', en: 'Identity & UI' },
+    nodeTechTitle: { ar: 'التقنية', en: 'Technology' },
+    nodeTechSub: { ar: 'تطوير وبرمجة', en: 'Web & Systems' },
+    nodeGrowthTitle: { ar: 'النمو', en: 'Growth' },
+    nodeGrowthSub: { ar: 'توسع واستدامة', en: 'Scale & Results' }
   },
   howWeWork: {
     sectionAria: { ar: 'منهجية العمل', en: 'How We Work' },

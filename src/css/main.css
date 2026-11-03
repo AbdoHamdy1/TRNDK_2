@@ -174,3 +174,210 @@ html[lang="en"] .hero-center-sub,
 .nav-link.nav-link-active svg {
   color: var(--color-primary) !important;
 }
+
+
+/* ========================================================================== */
+/* About Section Visual Redesign & Motion Enhancement                        */
+/* ========================================================================== */
+
+/* Entrance transition base states */
+#about .about-badge,
+#about .about-heading,
+#about .about-desc,
+#about .about-pillars,
+#about .about-node-2,
+#about .about-node-3 {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+#about .about-nexus-wrap {
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 20px));
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+#about .about-node-1 {
+  opacity: 0;
+  transform: translate(-50%, 20px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+#about .about-visual-canvas {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Staggered entrance when .about-in-view is active */
+#about.about-in-view .about-badge {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 50ms;
+}
+
+#about.about-in-view .about-heading {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 150ms;
+}
+
+#about.about-in-view .about-desc {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 250ms;
+}
+
+#about.about-in-view .about-pillars {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 350ms;
+}
+
+#about.about-in-view .about-visual-canvas {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 200ms;
+}
+
+#about.about-in-view .about-nexus-wrap {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition-delay: 300ms;
+}
+
+#about.about-in-view .about-node-1 {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition-delay: 400ms;
+}
+
+#about.about-in-view .about-node-2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 500ms;
+}
+
+#about.about-in-view .about-node-3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 600ms;
+}
+
+/* Ambient & Orbit Animations */
+@keyframes aboutOrbitCw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes aboutOrbitCcw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes aboutEnergyPulse {
+  0% { stroke-dashoffset: 20; opacity: 0.6; }
+  50% { stroke-dashoffset: 10; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.6; }
+}
+
+@keyframes aboutFloatY1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes aboutFloatY2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes aboutFloatY3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes aboutAmbientPulse {
+  0%, 100% { transform: scale(1); opacity: 0.25; }
+  50% { transform: scale(1.08); opacity: 0.45; }
+}
+
+.about-orbit-slow {
+  transform-origin: 0 0;
+  animation: aboutOrbitCw 55s linear infinite;
+}
+
+.about-orbit-reverse {
+  transform-origin: 0 0;
+  animation: aboutOrbitCcw 42s linear infinite;
+}
+
+.about-energy-line {
+  animation: aboutEnergyPulse 3.5s linear infinite;
+}
+
+.about-float-1 {
+  animation: aboutFloatY1 4.8s ease-in-out infinite;
+}
+
+.about-float-2 {
+  animation: aboutFloatY2 5.6s ease-in-out infinite 0.6s;
+}
+
+.about-float-3 {
+  animation: aboutFloatY3 5.2s ease-in-out infinite 1.2s;
+}
+
+.about-ambient-glow {
+  transform-origin: 240px 220px;
+  animation: aboutAmbientPulse 6s ease-in-out infinite;
+}
+
+@keyframes aboutBgGlowMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(15px, -15px) scale(1.1); }
+}
+
+.about-glow-red {
+  animation: aboutBgGlowMove 12s ease-in-out infinite alternate;
+}
+
+.about-glow-cyan {
+  animation: aboutBgGlowMove 14s ease-in-out infinite alternate-reverse;
+}
+
+/* Reduced Motion Override for About Section */
+@media (prefers-reduced-motion: reduce) {
+  #about .about-badge,
+  #about .about-heading,
+  #about .about-desc,
+  #about .about-pillars,
+  #about .about-nexus-wrap,
+  #about .about-node,
+  #about .about-visual-canvas {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  #about .about-nexus-wrap {
+    transform: translate(-50%, -50%) !important;
+  }
+  #about .about-node-1 {
+    transform: translate(-50%, 0) !important;
+  }
+  .about-orbit-slow,
+  .about-orbit-reverse,
+  .about-energy-line,
+  .about-float-1,
+  .about-float-2,
+  .about-float-3,
+  .about-ambient-glow,
+  .about-glow-red,
+  .about-glow-cyan {
+    animation: none !important;
+  }
+}
