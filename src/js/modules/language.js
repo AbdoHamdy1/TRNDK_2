@@ -258,6 +258,23 @@ class LanguageManager {
       }
     });
 
+    // Adjust Hero center hub subtitle size for English without affecting Arabic
+    const heroCenterSub = document.querySelector('.hero-center-sub');
+    if (heroCenterSub) {
+      heroCenterSub.setAttribute('font-size', lang === 'en' ? '7.75' : '9');
+    }
+
+    // Ensure all language toggle buttons display the target language and target ARIA description
+    const targetLabel = lang === 'ar' ? 'EN' : 'عربي';
+    const targetAria = lang === 'ar' ? 'تغيير اللغة إلى الإنجليزية' : 'Switch language to Arabic';
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+      btn.setAttribute('aria-label', targetAria);
+      const label = btn.querySelector('.lang-label');
+      if (label) {
+        label.textContent = targetLabel;
+      }
+    });
+
     // Dispatch event for any other module listening to language change
     window.dispatchEvent(new CustomEvent('trndk:languageChanged', {
       detail: { language: lang, isRtl }
@@ -278,11 +295,12 @@ class LanguageManager {
   }
 
   bindEvents() {
-    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.lang-toggle-btn');
+      if (btn) {
         e.preventDefault();
         this.toggleLanguage();
-      });
+      }
     });
   }
 }

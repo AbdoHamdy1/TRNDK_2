@@ -156,3 +156,10 @@ body {
     animation: none !important;
   }
 }
+
+
+/* Hero Graphic Center Hub Subtitle English Size Adjustment */
+html[lang="en"] .hero-center-sub,
+[dir="ltr"] .hero-center-sub {
+  font-size: 7.75px;
+}
